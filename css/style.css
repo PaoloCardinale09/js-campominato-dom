@@ -1,0 +1,51 @@
+body {
+  background-color: #c0c0c0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header {
+  height: 3rem;
+  background-color: white;
+}
+#grid {
+  width: 700px;
+  height: 700px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#grid,
+.square {
+  border: 2px solid white;
+}
+#challenge-select {
+  width: fit-content;
+}
+.square {
+  cursor: crosshair;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.easy {
+  height: calc(100% / 10);
+  width: calc(100% / 10);
+}
+
+.normal {
+  height: calc(100% / 9);
+  width: calc(100% / 9);
+}
+
+.hard {
+  height: calc(100% / 7);
+  width: calc(100% / 7);
+}
+
+.square.active {
+  background-color: blue;
+  color: white;
+}
