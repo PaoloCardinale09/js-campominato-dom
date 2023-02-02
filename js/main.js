@@ -30,6 +30,7 @@ const hard = 49;
 
 let gridDimension = 0;
 let classToAdd = "";
+// let bombsPositions = [];
 
 startButtonEl.addEventListener("click", function () {
   let levelChoice = challengeSelectEl.value;
@@ -44,13 +45,14 @@ startButtonEl.addEventListener("click", function () {
     gridDimension = hard;
   }
   generateGrid(gridEl, gridDimension);
-  const bombsPositions = [];
+  let bombsPositions = [];
   while (bombsPositions.length < 16) {
     const generateBombs = randomNumberInterval(1, 100);
     if (!bombsPositions.includes(generateBombs)) {
       bombsPositions.push(generateBombs);
     }
   }
+
   console.log(bombsPositions);
 });
 
@@ -88,6 +90,7 @@ function generateGrid(gridEl, dimension) {
     //  aggiungo un addeventlistener sul click che faccia il "toggle" della classe .active
     squareEl.addEventListener("click", function () {
       this.classList.toggle("active");
+      console.log(bombsPositions);
 
       console.log(this.innerHTML);
     });
