@@ -30,7 +30,7 @@ const hard = 49;
 
 let gridDimension = 0;
 let classToAdd = "";
-// let bombsPositions = [];
+let bombsPositions = [];
 
 startButtonEl.addEventListener("click", function () {
   let levelChoice = challengeSelectEl.value;
@@ -44,18 +44,16 @@ startButtonEl.addEventListener("click", function () {
     classToAdd = "hard";
     gridDimension = hard;
   }
-  generateGrid(gridEl, gridDimension);
-  let bombsPositions = [];
+  // let bombsPositions = [];
   while (bombsPositions.length < 16) {
     const generateBombs = randomNumberInterval(1, 100);
     if (!bombsPositions.includes(generateBombs)) {
       bombsPositions.push(generateBombs);
     }
   }
-
-  console.log(bombsPositions);
+  generateGrid(gridEl, gridDimension);
+  // console.log(bombsPositions);
 });
-
 // var e = document.getElementById("ddlViewBy");
 // var value = e.value;
 // var text = e.options[e.selectedIndex].text;
@@ -88,11 +86,16 @@ function generateGrid(gridEl, dimension) {
     squareEl.classList.add("square", classToAdd);
 
     //  aggiungo un addeventlistener sul click che faccia il "toggle" della classe .active
-    squareEl.addEventListener("click", function () {
-      this.classList.toggle("active");
-      console.log(bombsPositions);
 
+    // console.log(bombsPositions);
+    squareEl.addEventListener("click", function () {
+      if (bombsPositions.includes(parseInt(this.innerHTML))) {
+        this.classList.toggle("bomb");
+        // partitaInCorso = false;
+      }
+      this.classList.toggle("active");
       console.log(this.innerHTML);
+      // console.log(typeof bombsPositions);
     });
 
     //   aggiungo alla griglia
@@ -104,6 +107,7 @@ function generateGrid(gridEl, dimension) {
  * Funzione che genera due numeri casuali in un range stabilito
  * @param {int} min  numero minimo per stabilire il range
  * @param {int} max  numero massimo per stabilire il range
+ * @return {int[]} crea un array
  */
 
 function randomNumberInterval(min, max) {
